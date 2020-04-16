@@ -5,18 +5,33 @@
   
 
   
-  <title>雨夜的博客</title>
+  <title>Web安全-sql注入总结 | 雨夜的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="雨夜的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="一、简介了解SQL注入原理：我都理解是，用户把不合法的语句通过web提交的方式带到数据库中执行(SQL语句)，不按照设计者的设计思维进行数据查询，从而获得自己想要的数据。web的提交方式为表单、输入域名、页面请求。 危害：sql注入一直是高危漏洞，它可以获取敏感信息、修改信息、脱裤、上传webshell等。 附带上我哥们的所写的原理：  SQL注入即是指web应用程序对用户输入数据的合法性没有判断">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web安全-sql注入总结">
+<meta property="og:url" content="http://yoursite.com/2020/04/16/Web%E5%AE%89%E5%85%A8-sql%E6%B3%A8%E5%85%A5%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="雨夜的博客">
+<meta property="og:description" content="一、简介了解SQL注入原理：我都理解是，用户把不合法的语句通过web提交的方式带到数据库中执行(SQL语句)，不按照设计者的设计思维进行数据查询，从而获得自己想要的数据。web的提交方式为表单、输入域名、页面请求。 危害：sql注入一直是高危漏洞，它可以获取敏感信息、修改信息、脱裤、上传webshell等。 附带上我哥们的所写的原理：  SQL注入即是指web应用程序对用户输入数据的合法性没有判断">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:%5CUsers%5C%E9%9B%A8%E5%A4%9C%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200416104915719.png">
+<meta property="og:image" content="c:%5CUsers%5C%E9%9B%A8%E5%A4%9C%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200416105216144.png">
+<meta property="og:image" content="c:%5CUsers%5C%E9%9B%A8%E5%A4%9C%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200416105413343.png">
+<meta property="og:image" content="c:%5CUsers%5C%E9%9B%A8%E5%A4%9C%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200416110845047.png">
+<meta property="og:image" content="c:%5CUsers%5C%E9%9B%A8%E5%A4%9C%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200416145121853.png">
+<meta property="og:image" content="c:%5CUsers%5C%E9%9B%A8%E5%A4%9C%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200416145815244.png">
+<meta property="og:image" content="c:%5CUsers%5C%E9%9B%A8%E5%A4%9C%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200416164432386.png">
+<meta property="og:image" content="c:%5CUsers%5C%E9%9B%A8%E5%A4%9C%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200416164550586.png">
+<meta property="og:image" content="c:%5CUsers%5C%E9%9B%A8%E5%A4%9C%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200416165119842.png">
+<meta property="og:image" content="c:%5CUsers%5C%E9%9B%A8%E5%A4%9C%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200416170440364.png">
+<meta property="article:published_time" content="2020-04-16T00:46:00.000Z">
+<meta property="article:modified_time" content="2020-04-16T09:28:40.644Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:%5CUsers%5C%E9%9B%A8%E5%A4%9C%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200416104915719.png">
   
     <link rel="alternate" href="/atom.xml" title="雨夜的博客" type="application/atom+xml">
   
@@ -57,120 +72,13 @@
   </div>
 </header>
       <div id="middlecontent" title class="global-width sidebar-left">
-        <section id="main">
-  
-    <article id="post-渗透测试-信息收集" class="article global-container article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Web安全-sql注入总结" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
       
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/16/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">渗透测试-信息收集</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2020/04/16/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="article-date">
-  <time datetime="2020-04-16T09:30:29.000Z" itemprop="datePublished">2020-04-16</time>
-</a>
-    
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud" itemprop="articleBody">
-      
-        
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
-    <article id="post-Web安全-文件上传" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/16/Web%E5%AE%89%E5%85%A8-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/">Web安全-文件上传</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2020/04/16/Web%E5%AE%89%E5%85%A8-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="article-date">
-  <time datetime="2020-04-16T09:30:06.000Z" itemprop="datePublished">2020-04-16</time>
-</a>
-    
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud" itemprop="articleBody">
-      
-        
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
-    <article id="post-Web安全-文件包含" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/16/Web%E5%AE%89%E5%85%A8-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">Web安全-文件包含</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2020/04/16/Web%E5%AE%89%E5%85%A8-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" class="article-date">
-  <time datetime="2020-04-16T09:29:47.000Z" itemprop="datePublished">2020-04-16</time>
-</a>
-    
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud" itemprop="articleBody">
-      
-        
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
-    <article id="post-Web安全-sql注入总结" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/16/Web%E5%AE%89%E5%85%A8-sql%E6%B3%A8%E5%85%A5%E6%80%BB%E7%BB%93/">Web安全-sql注入总结</a>
+    <h1 class="article-title" itemprop="name">
+      Web安全-sql注入总结
     </h1>
   
 
@@ -183,6 +91,10 @@
     
     
   </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
   
 
   <div class="article-inner">
@@ -283,15 +195,51 @@
       
     </div>
     
+      <footer class="article-footer">
+        完
+      </footer>
+    
   </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+      <a href="/2020/04/16/Web%E5%AE%89%E5%85%A8-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"></strong>
+        <div class="article-nav-title">
+          
+            Web安全-文件包含
+          
+        </div>
+      </a>
+    
+  </div>
+  <div class="article-nav-block">
+    
+  </div>
+</nav>
+
+    <link rel="stylesheet" href="/css/gitment.css"> 
+<script src="/js/gitment.js"></script>
+
+<div id="gitmentContainer"></div>
+
+<script>
+var gitment = new Gitment({
+  owner: '',
+  repo: '',
+  oauth: {
+    client_id: '',
+    client_secret: '',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
   
   
 </article>
-
-  
-
-
-
 </section>
         <aside id="sidebar">
   
